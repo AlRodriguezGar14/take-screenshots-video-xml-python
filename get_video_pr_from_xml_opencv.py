@@ -7,6 +7,7 @@ import os
 import concurrent.futures
 import xml.etree.ElementTree as ET
 import cv2
+from xml_ns import xml_ns as ns0
 
 def get_video_metadata(input_video):
     ffprobe_cmd = f'ffprobe -v quiet -print_format json -show_streams {input_video}'.split()
@@ -30,7 +31,7 @@ if fps == 29:
 xml_file_path = input('Enter the path to the XML file: ').strip()
 
 # Define namespace -> important to let the app understand the xml
-ns = {'ns0': 'http://apple.com/itunes/importer'}
+ns = {'ns0': ns0}
 # Parse the XML file to extract the timecodes
 tree = ET.parse(xml_file_path)
 root = tree.getroot()
