@@ -21,6 +21,8 @@ input_video = input('Enter the path to the input video file: ').strip()
 metadata = get_video_metadata(input_video)
 
 numerator, denominator = map(int, metadata['streams'][0]['r_frame_rate'].split('/'))
+if numerator == 0:
+    numerator, denominator = map(int, metadata['streams'][1]['r_frame_rate'].split('/'))
 fps = math.floor(numerator / denominator)
 if fps == 23:
     fps = 24
